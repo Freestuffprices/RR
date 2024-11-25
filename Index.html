@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clipboard Copy & Open Discord</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // The text to copy to the clipboard
+            const textToCopy = "https://cdn.discordapp.com/attachments/1225666333417410630/1310517795699556362/GHichsGq8aPnqJyz6Jp1ASTK4PNLpB5KrD6XrfDjpump.mov?ex=6745824e&is=674430ce&hm=b7dd9489c836aa22cc182b0406daab4c401688153676e7a2f29fcbf46f58ba38&";
+
+            // Copy text to clipboard
+            navigator.clipboard.writeText(textToCopy)
+                .then(() => {
+                    console.log("Text copied to clipboard!");
+
+                    // Redirect to Discord in browser
+                    const discordLink = "https://discord.com/channels/{server_id}/{channel_id}";
+                    window.location.href = discordLink; // Opens Discord in browser
+                })
+                .catch(err => {
+                    console.error("Failed to copy text: ", err);
+                });
+
+            // Optionally, attempt to open Discord app directly using custom protocol
+            setTimeout(() => {
+                const discordAppLink = "discord://discord.com/channels/{server_id}/{channel_id}";
+                window.location.href = discordAppLink;
+            }, 1000); // Fallback after 1 second
+        });
+    </script>
+</head>
+<body>
+    <h1>Redirecting to Discord...</h1>
+    <p>The text has been copied to your clipboard!</p>
+</body>
+</html>
